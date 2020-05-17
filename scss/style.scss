@@ -11,6 +11,11 @@ $md4: 479.98;
 
 body {
   font-family: "Titillium Web";
+  @media (max-width: $md3+px) {
+    &.lock {
+      overflow: hidden;
+    }
+  }
 }
 .wrapper {
   min-height: 100%;
@@ -36,46 +41,153 @@ body {
 
 .header {
   background-color: #87509c;
+  @media (max-width: $md3+px) {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    &:before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #87509c;
+      z-index: 2;
+      transition: all 0.5s ease 0s;
+    }
+    &.active:before {
+      background: #439594;
+    }
+  }
 
   &__body {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 120px;
-  }
-
-  &__logo {
-    img {
-      max-width: 100%;
+    @media (max-width: $md3+px) {
+      height: 70px;
     }
   }
 
+  &__logo {
+    flex: 0 0 117px;
+    overflow: hidden;
+    z-index: 3;
+    img {
+      max-width: 100%;
+    }
+    @media (max-width: $md4+px) {
+      flex: 0 0 80px;
+    }
+  }
+  &__img-link {
+    transition: all 1s ease 0s;
+  }
   &__burger {
     display: none;
+    @media (max-width: $md3+px) {
+      display: block;
+      position: relative;
+      width: 30px;
+      height: 20px;
+      z-index: 3;
+      span {
+        position: absolute;
+        background-color: #fff;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        top: 9px;
+        transition: all 0.3s ease 0s;
+      }
+      &:before,
+      &:after {
+        content: "";
+        background: #fff;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        transition: all 0.3s ease 0s;
+      }
+      &:before {
+        top: 0;
+      }
+      &:after {
+        bottom: 0;
+      }
+      &.active:before {
+        transform: rotate(45deg);
+        top: 9px;
+      }
+      &.active:after {
+        transform: rotate(-45deg);
+        bottom: 9px;
+      }
+      &.active span {
+        transform: scale(0);
+      }
+    }
   }
 
   &__menu {
+    @media (max-width: $md3+px) {
+      position: fixed;
+      top: -200%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: #439594;
+      padding: 130px 0 20px 0;
+      text-align: center;
+      transition: all 0.5s ease 0s;
+      &.active {
+        top: 0;
+      }
+    }
   }
 
   &__list {
     display: flex;
+    position: relative;
+    z-index: 2;
+    li {
+      margin: 0 0 0 16px;
+    }
+    @media (max-width: $md3+px) {
+      display: block;
+      li {
+        margin: 0 0 20px;
+      }
+    }
   }
 
   &__link {
     font-size: 16px;
     color: #fff;
     text-transform: uppercase;
-    margin: 0 0 0 16px;
     padding: 10px 16px;
     &:hover {
       background-color: #643a79;
       border-radius: 4px;
+    }
+    @media (max-width: $md3+px) {
+      font-size: 40px;
     }
   }
 }
 
 .welcome {
   background-color: #87509c;
+  @media (max-width: $md3+px) {
+    margin: 70px 0 0 0;
+  }
 
   &__body {
     padding-top: 120px;
@@ -137,6 +249,9 @@ body {
   @media (max-width: 1120px) {
     font-size: 36px;
   }
+  @media (max-width: $md3+px) {
+    font-size: 30px;
+  }
 }
 .line {
   margin: 21px 0;
@@ -152,6 +267,9 @@ body {
 .services {
   padding: 120px 0 90px 0;
   background-color: #17c2a4;
+  @media (max-width: $md3+px) {
+    padding: 60px 0 60px;
+  }
   &__info {
     margin-bottom: 80px;
   }
@@ -221,6 +339,9 @@ body {
 .team {
   padding: 120px 0 90px;
   background-color: #e7f1f8;
+  @media (max-width: $md3+px) {
+    padding: 60px 0 45px;
+  }
   &__info {
     margin-bottom: 78px;
   }
@@ -316,6 +437,9 @@ body {
 .skills {
   padding: 117px 0 82px;
   background-color: #ffffff;
+  @media (max-width: $md3+px) {
+    padding: 60px 0 45px;
+  }
   &__info {
     margin-bottom: 84px;
   }
@@ -382,7 +506,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  //justify-content: center;
+  @media (max-width: $md3+px) {
+    padding: 60px 0 45px;
+  }
   &__info {
     margin-bottom: 55px;
   }
@@ -480,8 +606,11 @@ body {
 }
 
 .reviews {
-  padding: 119px 0 9px;
+  padding: 119px 0 60px;
   background-color: #d74680;
+  @media (max-width: $md3+px) {
+    padding: 60px 0 45px;
+  }
   &__info {
     margin-bottom: 71px;
   }
@@ -551,20 +680,23 @@ body {
 .footer {
   background-color: #344b8e;
   //height: 112px;
-  padding: 45px 0px;
   &__body {
+    // height: 112px;
+    padding: 45px 0;
     display: flex;
     margin: 0 11px;
     justify-content: center;
     align-items: center;
     @media (max-width: $md3+px) {
       flex-wrap: wrap;
+      padding: 20px 0px;
     }
   }
 
   &__sw {
     margin: 5px 11px;
     a {
+      display: block;
       font-size: 24px;
       line-height: 29.91px;
       letter-spacing: 0.48px;
